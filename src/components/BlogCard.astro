@@ -1,0 +1,34 @@
+---
+interface Props {
+  post: any;
+}
+
+const { post } = Astro.props;
+---
+
+<article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+  <div class="p-6">
+    <div class="mb-4">
+      <span class="text-sm text-primary font-medium">{post.data.category}</span>
+      {post.data.featured && (
+        <span class="ml-2 bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded">
+          Featured
+        </span>
+      )}
+    </div>
+    <h2 class="text-xl font-semibold mb-3">
+      <a href={`/blog/${post.slug}`} class="hover:text-primary">
+        {post.data.title}
+      </a>
+    </h2>
+    <p class="text-gray-600 mb-4 line-clamp-3">{post.data.excerpt}</p>
+    <div class="flex items-center justify-between">
+      <a href={`/blog/${post.slug}`} class="text-primary font-medium hover:underline">
+        Read More →
+      </a>
+      {post.data.readingTime && (
+        <span class="text-sm text-gray-500">{post.data.readingTime} min read</span>
+      )}
+    </div>
+  </div>
+</article>

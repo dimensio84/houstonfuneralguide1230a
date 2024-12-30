@@ -1,0 +1,319 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const title = "Funeral Cost Calculator | Houston Funeral Planning Tool";
+const description = "Calculate funeral costs in Houston with our easy-to-use calculator. Get accurate estimates for funeral services, burial, and cremation options.";
+---
+
+<Layout title={title} description={description}>
+  <div class="container mx-auto px-4 py-12 max-w-4xl">
+    <h1 class="text-4xl font-bold mb-6">Houston Funeral Cost Calculator</h1>
+    
+    <p class="text-lg text-gray-600 mb-8">
+      Plan ahead with confidence using our funeral cost calculator. Get accurate estimates for funeral services in Houston based on current market prices and your specific preferences.
+    </p>
+
+    <!-- Calculator Tool -->
+    <div class="bg-white p-8 rounded-lg shadow-md mb-12">
+      <form id="calculatorForm" class="space-y-6">
+        <!-- Service Type -->
+        <div>
+          <label class="block text-gray-700 font-medium mb-2">Type of Service</label>
+          <select 
+            id="serviceType"
+            class="w-full p-2 border border-gray-300 rounded-md"
+          >
+            <option value="traditional">Traditional Funeral Service</option>
+            <option value="cremation">Cremation Service</option>
+            <option value="memorial">Memorial Service</option>
+            <option value="direct">Direct Burial/Cremation</option>
+          </select>
+        </div>
+
+        <!-- Basic Services -->
+        <div>
+          <h3 class="font-medium text-gray-700 mb-2">Basic Services</h3>
+          <div class="space-y-2">
+            <label class="flex items-center">
+              <input type="checkbox" class="form-checkbox" checked disabled>
+              <span class="ml-2">Professional Services Fee</span>
+            </label>
+            <label class="flex items-center">
+              <input type="checkbox" class="form-checkbox" name="embalming">
+              <span class="ml-2">Embalming</span>
+            </label>
+            <label class="flex items-center">
+              <input type="checkbox" class="form-checkbox" name="viewing">
+              <span class="ml-2">Viewing/Visitation</span>
+            </label>
+            <label class="flex items-center">
+              <input type="checkbox" class="form-checkbox" name="ceremony">
+              <span class="ml-2">Funeral Ceremony</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Transportation -->
+        <div>
+          <h3 class="font-medium text-gray-700 mb-2">Transportation</h3>
+          <div class="space-y-2">
+            <label class="flex items-center">
+              <input type="checkbox" class="form-checkbox" name="hearse">
+              <span class="ml-2">Hearse Service</span>
+            </label>
+            <label class="flex items-center">
+              <input type="checkbox" class="form-checkbox" name="limousine">
+              <span class="ml-2">Limousine Service</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Merchandise -->
+        <div>
+          <h3 class="font-medium text-gray-700 mb-2">Merchandise</h3>
+          <select 
+            id="casketType"
+            class="w-full p-2 border border-gray-300 rounded-md mb-2"
+          >
+            <option value="basic">Basic Casket/Urn</option>
+            <option value="standard">Standard Casket/Urn</option>
+            <option value="premium">Premium Casket/Urn</option>
+          </select>
+        </div>
+
+        <!-- Additional Services -->
+        <div>
+          <h3 class="font-medium text-gray-700 mb-2">Additional Services</h3>
+          <div class="space-y-2">
+            <label class="flex items-center">
+              <input type="checkbox" class="form-checkbox" name="flowers">
+              <span class="ml-2">Flowers</span>
+            </label>
+            <label class="flex items-center">
+              <input type="checkbox" class="form-checkbox" name="programs">
+              <span class="ml-2">Memorial Programs</span>
+            </label>
+            <label class="flex items-center">
+              <input type="checkbox" class="form-checkbox" name="obituary">
+              <span class="ml-2">Obituary Notice</span>
+            </label>
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          class="w-full bg-primary text-white py-3 rounded-md hover:bg-opacity-90 transition-colors"
+        >
+          Calculate Total Cost
+        </button>
+      </form>
+
+      <!-- Results Section -->
+      <div id="results" class="mt-8 hidden">
+        <h3 class="text-xl font-semibold mb-4">Estimated Costs</h3>
+        <div class="bg-gray-50 p-4 rounded-md">
+          <div id="costBreakdown" class="space-y-2"></div>
+          <div class="border-t border-gray-300 mt-4 pt-4">
+            <p class="text-xl font-bold">
+              Total Estimated Cost: <span id="totalCost"></span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- How to Use Section -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-4">How to Use Our Funeral Cost Calculator</h2>
+      <div class="prose lg:prose-lg">
+        <ol>
+          <li>Select your preferred type of service</li>
+          <li>Choose desired basic services</li>
+          <li>Add transportation options if needed</li>
+          <li>Select merchandise preferences</li>
+          <li>Include any additional services</li>
+          <li>Click "Calculate Total Cost" to see the estimate</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Key Features Section -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-4">Key Features of the Calculator</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <h3 class="text-xl font-semibold mb-3">Accurate Pricing</h3>
+          <p class="text-gray-600">
+            Updated regularly with current Houston market rates for funeral services and merchandise.
+          </p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <h3 class="text-xl font-semibold mb-3">Customizable Options</h3>
+          <p class="text-gray-600">
+            Choose from various service types and add-ons to create a personalized estimate.
+          </p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <h3 class="text-xl font-semibold mb-3">Detailed Breakdown</h3>
+          <p class="text-gray-600">
+            See itemized costs for each service and component selected.
+          </p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <h3 class="text-xl font-semibold mb-3">Instant Results</h3>
+          <p class="text-gray-600">
+            Get immediate cost estimates based on your selections.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+      <div class="space-y-6">
+        <div>
+          <h3 class="text-xl font-semibold mb-2">How accurate is the Funeral Cost Calculator?</h3>
+          <p class="text-gray-600">
+            Our calculator provides estimates based on average funeral costs in Houston. Actual prices may vary depending on specific funeral home rates and service selections. We update our pricing data regularly to maintain accuracy.
+          </p>
+        </div>
+        <div>
+          <h3 class="text-xl font-semibold mb-2">Is this calculator free to use?</h3>
+          <p class="text-gray-600">
+            Yes, our Funeral Cost Calculator is completely free to use. We provide this tool as a service to help Houston families plan and budget for funeral expenses.
+          </p>
+        </div>
+        <div>
+          <h3 class="text-xl font-semibold mb-2">Can I save my results?</h3>
+          <p class="text-gray-600">
+            Currently, you can print or screenshot your results for future reference. We recommend documenting your selections and the estimated costs for your records.
+          </p>
+        </div>
+        <div>
+          <h3 class="text-xl font-semibold mb-2">How often is the calculator updated?</h3>
+          <p class="text-gray-600">
+            We update our pricing data quarterly to reflect current market rates in Houston. The last update was performed on [Current Date].
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <div class="bg-primary text-white p-8 rounded-lg text-center">
+      <h2 class="text-2xl font-bold mb-4">Need Professional Guidance?</h2>
+      <p class="text-lg mb-6">
+        Our team is here to help you understand funeral costs and create a plan that fits your budget.
+      </p>
+      <a
+        href="tel:+1234567890"
+        class="bg-white text-primary px-8 py-3 rounded-md font-bold hover:bg-gray-100 transition-colors inline-block"
+      >
+        Call (123) 456-7890
+      </a>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  const calculator = {
+    baseCosts: {
+      traditional: 2000,
+      cremation: 1500,
+      memorial: 1200,
+      direct: 695
+    },
+    services: {
+      embalming: 500,
+      viewing: 400,
+      ceremony: 500
+    },
+    transportation: {
+      hearse: 300,
+      limousine: 400
+    },
+    merchandise: {
+      basic: 1000,
+      standard: 2500,
+      premium: 5000
+    },
+    additional: {
+      flowers: 200,
+      programs: 150,
+      obituary: 100
+    }
+  };
+
+  function calculateCosts() {
+    const form = document.getElementById('calculatorForm');
+    const results = document.getElementById('results');
+    const costBreakdown = document.getElementById('costBreakdown');
+    const totalCostElement = document.getElementById('totalCost');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      let total = 0;
+      const breakdown = [];
+
+      // Get service type
+      const serviceType = document.getElementById('serviceType').value;
+      total += calculator.baseCosts[serviceType];
+      breakdown.push({
+        item: 'Basic Professional Services',
+        cost: calculator.baseCosts[serviceType]
+      });
+
+      // Calculate selected services
+      Object.entries(calculator.services).forEach(([service, cost]) => {
+        const checkbox = form.querySelector(`[name="${service}"]`);
+        if (checkbox?.checked) {
+          total += cost;
+          breakdown.push({ item: service.charAt(0).toUpperCase() + service.slice(1), cost });
+        }
+      });
+
+      // Calculate transportation
+      Object.entries(calculator.transportation).forEach(([service, cost]) => {
+        const checkbox = form.querySelector(`[name="${service}"]`);
+        if (checkbox?.checked) {
+          total += cost;
+          breakdown.push({ item: service.charAt(0).toUpperCase() + service.slice(1), cost });
+        }
+      });
+
+      // Add merchandise
+      const merchandiseType = document.getElementById('casketType').value;
+      total += calculator.merchandise[merchandiseType];
+      breakdown.push({
+        item: `${merchandiseType.charAt(0).toUpperCase() + merchandiseType.slice(1)} Casket/Urn`,
+        cost: calculator.merchandise[merchandiseType]
+      });
+
+      // Calculate additional services
+      Object.entries(calculator.additional).forEach(([service, cost]) => {
+        const checkbox = form.querySelector(`[name="${service}"]`);
+        if (checkbox?.checked) {
+          total += cost;
+          breakdown.push({ item: service.charAt(0).toUpperCase() + service.slice(1), cost });
+        }
+      });
+
+      // Display results
+      costBreakdown.innerHTML = breakdown
+        .map(item => `
+          <div class="flex justify-between">
+            <span>${item.item}</span>
+            <span>$${item.cost.toLocaleString()}</span>
+          </div>
+        `)
+        .join('');
+
+      totalCostElement.textContent = `$${total.toLocaleString()}`;
+      results.classList.remove('hidden');
+    });
+  }
+
+  // Initialize calculator
+  document.addEventListener('DOMContentLoaded', calculateCosts);
+</script>

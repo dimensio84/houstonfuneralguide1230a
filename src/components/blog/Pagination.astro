@@ -1,0 +1,51 @@
+---
+interface Props {
+  currentPage: number;
+  totalPages: number;
+  category: string;
+}
+
+const { currentPage, totalPages, category } = Astro.props;
+
+const createPageUrl = (pageNum: number) => {
+  const params = new URLSearchParams();
+  params.set('page', pageNum.toString());
+  if (category !== 'all') {
+    params.set('category', category);
+  }
+  return `/blog?${params.toString()}`;
+};
+---
+
+<div class="flex justify-center gap-2">
+  {currentPage > 1 && (
+    <a
+      href={createPageUrl(currentPage - 1)}
+      class="px-4 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200"
+    >
+      Previous
+    </a>
+  )}
+  
+  {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
+    <a
+      href={createPageUrl(pageNum)}
+      class={`px-4 py-2 rounded-md ${
+        currentPage === pageNum
+          ? 'bg-primary text-white'
+          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+      }`}
+    >
+      {pageNum}
+    </a>
+  ))}
+  
+  {currentPage < totalPages && (
+    <a
+      href={createPageUrl(currentPage + 1)}
+      class="px-4 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200"
+    >
+      Next
+    </a>
+  )}
+</div>

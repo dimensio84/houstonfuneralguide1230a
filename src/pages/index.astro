@@ -1,0 +1,104 @@
+---
+import Layout from '../layouts/Layout.astro';
+import LatestArticles from '../components/LatestArticles.astro';
+
+const title = "Houston Funeral Guide | Funeral & Cremation Services";
+const description = "Your comprehensive resource for funeral and cremation services in Houston, TX. Expert guidance for funeral planning, costs, and arrangements.";
+---
+
+<Layout title={title} description={description}>
+  <!-- Hero Section -->
+  <section class="bg-primary text-white py-20">
+    <div class="container mx-auto px-4 text-center">
+      <h1 class="text-5xl font-bold mb-6">Houston Funeral Guide</h1>
+      <p class="text-xl mb-8 max-w-2xl mx-auto">Your comprehensive resource for funeral and cremation services in Houston, TX</p>
+      <div class="flex justify-center gap-4">
+        <a href="tel:+1234567890" class="bg-white text-primary px-8 py-3 rounded-md font-bold hover:bg-gray-100 transition-colors">
+          Call Now: (123) 456-7890
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="py-16">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold mb-12 text-center">Our Services</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="text-center p-6">
+          <h3 class="text-xl font-semibold mb-4">Funeral Services</h3>
+          <p class="text-gray-600">Comprehensive information about funeral homes, services, and arrangements in Houston.</p>
+        </div>
+        <div class="text-center p-6">
+          <h3 class="text-xl font-semibold mb-4">Cremation Services</h3>
+          <p class="text-gray-600">Details about cremation options, costs, and providers in the Houston area.</p>
+        </div>
+        <div class="text-center p-6">
+          <h3 class="text-xl font-semibold mb-4">Military Services</h3>
+          <p class="text-gray-600">Specialized services and honors for veterans, including VA benefits and military honors.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Calculator Section -->
+  <section class="bg-gray-50 py-16">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-3xl font-bold mb-6">Funeral Cost Calculator</h2>
+        <p class="text-xl text-gray-600 mb-8">Plan ahead with confidence using our easy-to-use calculator to estimate funeral costs in Houston.</p>
+        <a 
+          href="/tools/funeral-cost-calculator" 
+          class="inline-block bg-primary text-white px-8 py-4 rounded-md font-bold hover:bg-opacity-90 transition-colors"
+        >
+          Try Our Cost Calculator →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Latest Articles Section -->
+  <LatestArticles />
+
+  <!-- Resources Section -->
+  <section class="bg-gray-50 py-16">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold mb-12 text-center">Helpful Resources</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <a href="/resources/planning-guide" class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition-shadow">
+          <h3 class="text-xl font-semibold mb-4">Planning Guide</h3>
+          <p class="text-gray-600 mb-4">Step-by-step guidance for planning a funeral in Houston.</p>
+          <span class="text-primary hover:underline">Read More →</span>
+        </a>
+        <a href="/resources/cost-information" class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition-shadow">
+          <h3 class="text-xl font-semibold mb-4">Cost Information</h3>
+          <p class="text-gray-600 mb-4">Understanding funeral and cremation costs in Houston.</p>
+          <span class="text-primary hover:underline">Read More →</span>
+        </a>
+        <a href="/resources/legal-requirements" class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition-shadow">
+          <h3 class="text-xl font-semibold mb-4">Legal Requirements</h3>
+          <p class="text-gray-600 mb-4">Texas legal requirements for funeral arrangements.</p>
+          <span class="text-primary hover:underline">Read More →</span>
+        </a>
+        <a href="/resources/grief-support" class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition-shadow">
+          <h3 class="text-xl font-semibold mb-4">Grief Support</h3>
+          <p class="text-gray-600 mb-4">Local grief support resources and counseling services.</p>
+          <span class="text-primary hover:underline">Read More →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="bg-primary text-white py-16">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold mb-6">Need Assistance?</h2>
+      <p class="text-xl mb-8 max-w-2xl mx-auto">
+        Our team is here to help you find the right funeral services and resources.
+      </p>
+      <a href="tel:+1234567890" class="bg-white text-primary px-8 py-3 rounded-md font-bold hover:bg-gray-100 transition-colors">
+        Call Now: (123) 456-7890
+      </a>
+    </div>
+  </section>
+</Layout>

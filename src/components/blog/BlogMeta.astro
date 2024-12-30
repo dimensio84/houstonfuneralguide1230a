@@ -1,0 +1,29 @@
+---
+interface Props {
+  readingTime: number;
+  category: string;
+  tags: string[];
+}
+
+const { readingTime, category, tags } = Astro.props;
+---
+
+<div class="flex flex-wrap gap-3 text-sm text-gray-600">
+  <span class="flex items-center">
+    <svg class="w-4 h-4 mr-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    {readingTime} min read
+  </span>
+  <span class="flex items-center">
+    <svg class="w-4 h-4 mr-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M4 21h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    {category}
+  </span>
+  {tags.map(tag => (
+    <span class="bg-gray-100 px-2 py-1 rounded-full text-xs">
+      {tag}
+    </span>
+  ))}
+</div>

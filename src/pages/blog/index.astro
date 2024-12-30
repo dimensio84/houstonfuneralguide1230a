@@ -1,0 +1,72 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import BlogCard from '../../components/BlogCard.astro';
+import CategoryFilter from '../../components/blog/CategoryFilter.astro';
+import Pagination from '../../components/blog/Pagination.astro';
+
+// Get all blog posts
+const allPosts = await getCollection('blog');
+const POSTS_PER_PAGE = 12;
+
+// Get page number from URL
+const currentPage = Number(Astro.url.searchParams.get('page')) || 1;
+const start = (currentPage - 1) * POSTS_PER_PAGE;
+const end = start + POSTS_PER_PAGE;
+
+// Get all categories
+const categories = [...new Set(allPosts.map(post => post.data.category))];
+
+// Get current category from URL
+const currentCategory = Astro.url.searchParams.get('category') || 'all';
+
+// Filter posts
+const filteredPosts = allPosts
+  .filter(post => currentCategory === 'all' || post.data.category === currentCategory)
+  // Show featured posts first, then sort by title
+  .sort((a, b) => {
+    if (a.data.featured !== b.data.featured) {
+      return b.data.featured ? 1 : -1;
+    }
+    return a.data.title.localeCompare(b.data.title);
+  });
+
+const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE);
+const paginatedPosts = filteredPosts.slice(start, end);
+
+// SEO Meta Data
+const title = "Funeral Planning Resources & Guides | Houston Funeral Guide";
+const description = "Expert advice and comprehensive resources for funeral planning in Houston. Learn about funeral costs, services, and arrangements from industry professionals.";
+---
+
+<Layout 
+  title={title}
+  description={description}
+  canonicalURL={Astro.url.pathname}
+>
+  <div class="container mx-auto px-4 py-12">
+    <h1 class="text-4xl font-bold mb-6">Funeral Planning Resources & Guides</h1>
+    
+    <!-- Search and Filters -->
+    <div class="mb-8">
+      <CategoryFilter 
+        categories={categories} 
+        currentCategory={currentCategory} 
+      />
+    </div>
+
+    <!-- Blog Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+      {paginatedPosts.map((post) => (
+        <BlogCard post={post} />
+      ))}
+    </div>
+
+    <!-- Pagination -->
+    <Pagination 
+      currentPage={currentPage}
+      totalPages={totalPages}
+      category={currentCategory}
+    />
+  </div>
+</Layout>
